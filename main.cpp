@@ -126,7 +126,32 @@ class Queue
         }
 };
 
+void login()
+{
+    string username, passwd;
+    int loginOption;
+    cout << "Login sebagai: " << endl;
+    cout << "1. Admin" << endl;
+    cout << "2. User" << endl;
+    cout << "Pilihan: "; cin >> loginOption;
+    if (loginOption == 1)
+    {
+        cout << "Admin login" << endl;
+        cout << "Username : "; cin >> username;
+        cout << "Password : "; cin >> passwd;
+        if (username == "admin" && passwd == "admin")
+        {
+            cout << "Login berhasil sebagai Admin" << endl;
+        }
+    } else 
+    {
+        cout << "Login berhasill sebagai user" << endl;
+    }
+    
+}
+
 int main() 
 {
-    cout << "test queue";
+    login();
+
 }
