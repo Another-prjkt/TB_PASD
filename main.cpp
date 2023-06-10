@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const string VERSION = "1.0.0";
+const string VERSION = "1.0.1";
 
 // untuk menyimpan data
 struct PasswordData
