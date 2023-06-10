@@ -26,14 +26,14 @@ class Stack
             top = -1;
         }
 
-        void push(PasswordData password)
+        void push(PasswordData passwordData)
         {
             if (top >= MAX_SIZE - 1) 
             {
                 cout << "Data ditambahkan" << endl;
                 return;
             }
-            data[++top] = password;
+            data[++top] = passwordData;
         }
 
         void pop()
