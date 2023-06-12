@@ -12,119 +12,96 @@ struct PasswordData
     string password;
 };
 
-// implementasi stack 
-class Stack 
+bool isEmpty();
+
+// implementasi stack
+const int MAX_SIZE = 100;
+PasswordData stackData[MAX_SIZE];
+int top = -1;
+
+void push(PasswordData passwordData)
 {
-    private:
-        static const int MAX_SIZE = 100;
-        PasswordData data[MAX_SIZE];
-        int top;
-    
-    public:
-        Stack() 
-        {
-            top = -1;
-        }
+    if (top >= MAX_SIZE - 1)
+    {
+        cout << "Data ditambahkan" << endl;
+        return;
+    }
+    stackData[++top] = passwordData;
+}
 
-        void push(PasswordData passwordData)
-        {
-            if (top >= MAX_SIZE - 1) 
-            {
-                cout << "Data ditambahkan" << endl;
-                return;
-            }
-            data[++top] = passwordData;
-        }
-
-        void pop()
-        {
-            if (isEmpty())
-            {
-                cout << "Stack kosong!" << endl;
-                return;
-            }
-            top--;
-        }
-
-        PasswordData topElement()
-        {
-            if (isEmpty())
-            {
-                PasswordData emptyData;
-                emptyData.akun = "";
-                emptyData.password = "";
-                return emptyData;
-            }
-            return data[top];
-        }
-
-        bool isEmpty()
-        {
-            return top == -1;
-        }
-};
-
-class Queue 
+void pop()
 {
-    private:
-        static const int MAX_SIZE = 100;
-        PasswordData data[MAX_SIZE];
-        int depan;
-        int belakang;
+    if (isEmpty())
+    {
+        cout << "Stack kosong!" << endl;
+        return;
+    }
+    top--;
+}
 
-    public:
-        Queue()
-        {
-            depan = -1;
-            belakang = -1;
-        }
+PasswordData topElement()
+{
+    if (isEmpty())
+    {
+        PasswordData emptyData;
+        emptyData.akun = "";
+        emptyData.password = "";
+        return emptyData;
+    }
+    return stackData[top];
+}
 
-        void enqueue(PasswordData passwordData)
-        {
-            if (belakang == MAX_SIZE - 1)
-            {
-                cout << "Queue Terisi" << endl;
-                return;
-            }
+bool isEmpty()
+{
+    return top == -1;
+}
 
-            data[++belakang] = passwordData;
-            if (depan == - 1) 
-            {
-                depan = 0;
-            }
-        }
+// implementasi queue
+PasswordData queueData[MAX_SIZE];
+int frontIndex = -1;
+int rearIndex = -1;
 
-        void dequeue()
-        {
-            if (isEmpty())
-            {
-                cout << "Queue kosong!" << endl;
-                return;
-            }
-            depan++;
-            if (depan > belakang)
-            {
-                depan = -1;
-                belakang = -1;
-            }
-        }
+void enqueue(PasswordData passwordData)
+{
+    if (rearIndex == MAX_SIZE - 1)
+    {
+        cout << "Queue Terisi" << endl;
+        return;
+    }
 
-        PasswordData elemenDepan()
-        {
-            if (isEmpty())
-            {
-                PasswordData emptyData;
-                emptyData.akun = "";
-                emptyData.password = "";
-                return emptyData;
-            }
-            return data[depan];
-        }
-        bool isEmpty()
-        {
-            return depan == -1;
-        }
-};
+    queueData[++rearIndex] = passwordData;
+    if (frontIndex == -1)
+    {
+        frontIndex = 0;
+    }
+}
+
+void dequeue()
+{
+    if (isEmpty())
+    {
+        cout << "Queue kosong!" << endl;
+        return;
+    }
+    frontIndex++;
+    if (frontIndex > rearIndex)
+    {
+        frontIndex = -1;
+        rearIndex = -1;
+    }
+}
+
+PasswordData frontElement()
+{
+    if (isEmpty())
+    {
+        PasswordData emptyData;
+        emptyData.akun = "";
+        emptyData.password = "";
+        return emptyData;
+    }
+    return queueData[frontIndex];
+}
 
 void login()
 {
